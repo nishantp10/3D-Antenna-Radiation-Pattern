@@ -60,15 +60,13 @@ Y = R * np.sin(THETA) * np.sin(PHI)
 
 Z = R * np.cos(THETA) 
 
-X = X.reshape([power.shape[0],power.shape[1]])
-Y = Y.reshape([power.shape[0],power.shape[1]])
-Z = Z.reshape([power.shape[0],power.shape[1]])
-
 #setup layout and plot on 3d surface
 
-layout = go.Layout(title="3D Radiation Pattern of 5G CW data")
+layout = go.Layout(title="3D Radiation Pattern of 5G CW data", xaxis = dict(range=[min_X,max_X],), yaxis = dict(range=[min_Y,max_Y],))
 
-fig = go.Figure(data=[go.Surface(x=X, y=Y, z=Z, surfacecolor=R, colorscale='Reds')], layout = layout)
+fig = go.Figure(data=[go.Surface(x=X, y=Y, z=Z, surfacecolor=R, colorscale='mygbm', colorbar = dict(title = "Gain", thickness = 50, xpad = 500))], layout = layout)
+
+fig.update_layout(autosize = True, margin = dict(l = 50, r = 50, t = 250, b = 250))
 
 plot(fig)
 
