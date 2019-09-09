@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 21 13:10:38 2019
+
+@author: slaxman
+"""
+
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -8,7 +15,7 @@ from plotly.offline import plot
 start = time.time()
 
 #reading the csv measurement file
-data = pd.read_csv('Data.csv', header = None)
+data = pd.read_csv('DATA.csv', header = None)
 
 phi = np.asarray(data[0].iloc[1:,0])
 theta = np.asarray(data[0].iloc[0,1:])
@@ -64,3 +71,5 @@ layout = go.Layout(title="3D Radiation Pattern of 5G CW data")
 fig = go.Figure(data=[go.Surface(x=X, y=Y, z=Z, surfacecolor=R, colorscale='Reds')], layout = layout)
 
 plot(fig)
+
+print("Time elapsed: ",time.time() - start, " seconds")
